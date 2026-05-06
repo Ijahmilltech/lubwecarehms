@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LubweCare Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- MOBILE MENU BUTTON -->
+
+<div class="mobile-menu" id="menuBtn">
+☰
+</div>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+    <img src="assets/logo.png" class="logo-img">
+
+    <h2>LubweCare HMS</h2>
+
+</div>
+
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">🦠 Disease Records</a>
+    <a href="pages/staff.html">👨‍⚕️ Staff</a>
+    <a href="pages/analytics.html">📊 Analytics</a>
+    <a href="#">🧠 AI Insights</a>
+    <a href="pages/reports.html">📄 Reports</a>
+    <a href="pages/settings.html">⚙️ Settings</a>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<div class="topbar">
+
+    <div>
+        <h1>Lubwe Mission Hospital</h1>
+        <p>Welcome back, Administrator 👋</p>
+    </div>
+
+    <div class="top-actions">
+
+        <input type="text" class="search" placeholder="Search anything...">
+
+        <div class="profile"></div>
+
+    </div>
+
+</div>
+
+<!-- KPI CARDS -->
+
+<div class="cards">
+
+    <div class="card">
+        <h3>Total Staff</h3>
+        <h1 id="staffCount">0</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Patients</h3>
+        <h1 id="patientCount">0</h1>
+    </div>
+
+    <div class="card">
+        <h3>Active Diseases</h3>
+        <h1 id="diseaseCount">0</h1>
+    </div>
+
+    <div class="card">
+        <h3>Critical Alerts</h3>
+        <h1 id="alertCount">0</h1>
+    </div>
+
+</div>
+
+<!-- GRID -->
+
+<div class="grid">
+
+    <div class="chart-box">
+
+        <h3>Disease Distribution</h3>
+
+        <canvas id="pieChart"></canvas>
+
+    </div>
+
+    <div class="ai-box">
+
+        <h3>🧠 AI Health Insights</h3>
+
+        <div class="ai-alert">
+            ALERT: Malaria cases rising rapidly
+        </div>
+
+        <ul>
+            <li>Increase mosquito net distribution</li>
+            <li>Conduct sanitation campaigns</li>
+            <li>Improve public awareness</li>
+            <li>Strengthen early diagnosis</li>
+        </ul>
+
+        <button class="btn">
+            Generate Report
+        </button>
+
+    </div>
+
+</div>
+
+<div class="grid">
+
+    <div class="chart-box">
+
+        <h3>Disease Trend Analysis</h3>
+
+        <canvas id="lineChart"></canvas>
+
+    </div>
+
+    <div class="alert-box">
+
+        <h3>🚨 Recent Alerts</h3>
+
+        <div class="alert">
+            Malaria outbreak detected
+        </div>
+
+        <div class="alert">
+            Typhoid increased by 15%
+        </div>
+
+        <div class="alert">
+            Reports ready for download
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LubweCare AI Reports</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- jsPDF -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+/* =========================
+   PAGE
+========================= */
+
+body{
+    background:#f4f7fb;
+    font-family:'Poppins',sans-serif;
+}
+
+/* =========================
+   AI ANALYSIS
+========================= */
+
+.ai-analysis{
+    background:#ffffff;
+    padding:20px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    line-height:1.8;
+}
+
+.ai-analysis h2{
+    color:#0f4cfa;
+    margin-bottom:15px;
+}
+
+/* =========================
+   CHART FIX
+========================= */
+
+.chart-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    margin-top:20px;
+}
+
+/* SMALLER CHART CONTAINER */
+
+.chart-container{
+    position:relative;
+    width:100%;
+    max-width:700px;
+    height:320px;
+    margin:auto;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .chart-container{
+        height:250px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+            <h1>📄 AI Medical Reports</h1>
+            <p>Smart hospital intelligence reporting</p>
+        </div>
+
+        <button class="btn" onclick="downloadPDF()">
+            Download PDF
+        </button>
+
+    </div>
+
+    <!-- KPI CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Monthly Admissions</h3>
+            <h1>1,245</h1>
+        </div>
+
+        <div class="card">
+            <h3>Total Recoveries</h3>
+            <h1>982</h1>
+        </div>
+
+        <div class="card">
+            <h3>Critical Cases</h3>
+            <h1>45</h1>
+        </div>
+
+        <div class="card">
+            <h3>Discharged Patients</h3>
+            <h1>764</h1>
+        </div>
+
+    </div>
+
+    <!-- CHART -->
+
+    <div class="chart-box">
+
+        <h3>📊 Monthly Patient Analysis</h3>
+
+        <br>
+
+        <div class="chart-container">
+
+            <canvas id="reportChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- AI ANALYSIS -->
+
+    <div class="ai-analysis">
+
+        <h2>🧠 AI Medical Intelligence Analysis</h2>
+
+        <p>
+            The hospital has recorded a rise in malaria and respiratory illnesses during the current reporting cycle.
+        </p>
+
+        <p>
+            Malaria cases increased by 35%, suggesting environmental sanitation concerns and increased mosquito breeding areas.
+        </p>
+
+        <p>
+            Respiratory infections are gradually increasing among children and elderly patients.
+        </p>
+
+        <p>
+            Recovery rates remain stable with treatment efficiency currently estimated at 78%.
+        </p>
+
+        <br>
+
+        <h2>📊 Executive Recommendations</h2>
+
+        <ul>
+
+            <li>Increase mosquito net distribution</li>
+
+            <li>Improve medicine stock management</li>
+
+            <li>Strengthen sanitation campaigns</li>
+
+            <li>Deploy more outreach staff</li>
+
+        </ul>
+
+        <br>
+
+        <h2>🏥 Operational Intelligence Summary</h2>
+
+        <p>
+            AI predicts patient admissions may rise by 18% within the next two months if preventive interventions are not strengthened.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   CHART
+========================= */
+
+const ctx =
+document.getElementById('reportChart');
+
+const reportChart =
+new Chart(ctx, {
+
+    type:'bar',
+
+    data:{
+
+        labels:[
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun'
+        ],
+
+        datasets:[{
+
+            label:'Patient Admissions',
+
+            data:[
+                300,
+                450,
+                500,
+                650,
+                800,
+                1000
+            ],
+
+            backgroundColor:[
+                '#0f4cfa',
+                '#00c6ff',
+                '#2ed573',
+                '#ffa502',
+                '#ff6b6b',
+                '#6c5ce7'
+            ],
+
+            borderRadius:10,
+            barThickness:40
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+
+        maintainAspectRatio:false,
+
+        plugins:{
+            legend:{
+                display:true
+            }
+        },
+
+        scales:{
+
+            y:{
+                beginAtZero:true
+            }
+
+        }
+
+    }
+
+});
+
+/* =========================
+   PDF DOWNLOAD
+========================= */
+
+function downloadPDF(){
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    /* TITLE */
+
+    doc.setFontSize(22);
+
+    doc.text(
+        "LubweCare AI Medical Report",
+        20,
+        20
+    );
+
+    /* DATE */
+
+    doc.setFontSize(11);
+
+    doc.text(
+        "Generated: " +
+        new Date().toLocaleString(),
+        20,
+        30
+    );
+
+    /* KPI */
+
+    doc.setFontSize(16);
+
+    doc.text(
+        "Hospital Summary",
+        20,
+        45
+    );
+
+    doc.setFontSize(12);
+
+    doc.text(
+        "Monthly Admissions: 1,245",
+        25,
+        55
+    );
+
+    doc.text(
+        "Total Recoveries: 982",
+        25,
+        63
+    );
+
+    doc.text(
+        "Critical Cases: 45",
+        25,
+        71
+    );
+
+    doc.text(
+        "Discharged Patients: 764",
+        25,
+        79
+    );
+
+    /* CHART IMAGE */
+
+    const chartCanvas =
+    document.getElementById('reportChart');
+
+    const chartImage =
+    chartCanvas.toDataURL('image/png');
+
+    doc.text(
+        "Monthly Patient Analysis",
+        20,
+        95
+    );
+
+    doc.addImage(
+        chartImage,
+        'PNG',
+        20,
+        100,
+        170,
+        70
+    );
+
+    /* AI ANALYSIS */
+
+    let y = 180;
+
+    doc.setFontSize(16);
+
+    doc.text(
+        "AI Medical Intelligence Analysis",
+        20,
+        y
+    );
+
+    y += 10;
+
+    doc.setFontSize(11);
+
+    const analysis = `
+The hospital has recorded a rise in malaria and respiratory illnesses during the current reporting cycle.
+
+Malaria cases increased by 35%, suggesting environmental sanitation concerns.
+
+Respiratory infections are gradually increasing among children and elderly patients.
+
+Recovery rates remain stable with treatment efficiency estimated at 78%.
+`;
+
+    const splitAnalysis =
+    doc.splitTextToSize(
+        analysis,
+        170
+    );
+
+    doc.text(
+        splitAnalysis,
+        20,
+        y
+    );
+
+    y += 40;
+
+    /* RECOMMENDATIONS */
+
+    doc.setFontSize(16);
+
+    doc.text(
+        "Executive Recommendations",
+        20,
+        y
+    );
+
+    y += 10;
+
+    doc.setFontSize(11);
+
+    const recommendations = `
+• Increase mosquito net distribution
+
+• Improve medicine stock management
+
+• Strengthen sanitation campaigns
+
+• Deploy more outreach staff
+`;
+
+    const splitRecommendations =
+    doc.splitTextToSize(
+        recommendations,
+        170
+    );
+
+    doc.text(
+        splitRecommendations,
+        20,
+        y
+    );
+
+    y += 40;
+
+    /* SUMMARY */
+
+    doc.setFontSize(16);
+
+    doc.text(
+        "Operational Intelligence Summary",
+        20,
+        y
+    );
+
+    y += 10;
+
+    doc.setFontSize(11);
+
+    const summary = `
+AI predicts patient admissions may rise by 18% within the next two months if preventive interventions are not strengthened.
+`;
+
+    const splitSummary =
+    doc.splitTextToSize(
+        summary,
+        170
+    );
+
+    doc.text(
+        splitSummary,
+        20,
+        y
+    );
+
+    /* SAVE */
+
+    doc.save(
+        "LubweCare_AI_Report.pdf"
+    );
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LubweCare Analytics</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>📊 Analytics Dashboard</h1>
+            <p>Real-time health analytics</p>
+        </div>
+
+    </div>
+
+    <!-- ANALYTICS CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Malaria Cases</h3>
+            <h1>500</h1>
+        </div>
+
+        <div class="card">
+            <h3>Typhoid Cases</h3>
+            <h1>210</h1>
+        </div>
+
+        <div class="card">
+            <h3>Flu Cases</h3>
+            <h1>340</h1>
+        </div>
+
+        <div class="card">
+            <h3>Respiratory Cases</h3>
+            <h1>120</h1>
+        </div>
+
+    </div>
+
+    <!-- CHARTS -->
+
+    <div class="grid">
+
+        <div class="chart-box">
+
+            <h3>Disease Comparison</h3>
+
+            <canvas id="analyticsChart"></canvas>
+
+        </div>
+
+        <div class="chart-box">
+
+            <h3>Recovery Rate</h3>
+
+            <canvas id="recoveryChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- AI INSIGHTS -->
+
+    <div class="ai-box">
+
+        <h3>🧠 AI Analytics Insights</h3>
+
+        <div class="ai-alert">
+            AI predicts increased malaria cases next month
+        </div>
+
+        <ul>
+            <li>Increase medicine stock levels</li>
+            <li>Prepare emergency response teams</li>
+            <li>Conduct awareness campaigns</li>
+            <li>Deploy more field health workers</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<script>
+
+/* BAR CHART */
+
+new Chart(document.getElementById('analyticsChart'), {
+
+    type:'bar',
+
+    data:{
+        labels:['Malaria','Typhoid','Flu','Respiratory'],
+        datasets:[{
+            label:'Cases',
+            data:[500,210,340,120],
+            backgroundColor:[
+                '#0f4cfa',
+                '#00c6ff',
+                '#2ed573',
+                '#ff6b6b'
+            ]
+        }]
+    }
+
+});
+
+/* DOUGHNUT */
+
+new Chart(document.getElementById('recoveryChart'), {
+
+    type:'doughnut',
+
+    data:{
+        labels:['Recovered','Critical','Under Treatment'],
+        datasets:[{
+            data:[70,10,20],
+            backgroundColor:[
+                '#2ed573',
+                '#ff4d4d',
+                '#ffa502'
+            ]
+        }]
+    }
+
+});
+
+</script>
+
+</body>
+</html>
